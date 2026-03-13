@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "harjoitustyo"
+version = "0.1.0"
+description = "Harjoitustyö: musiikki generaattori"
+authors = ["Rano-9 <esamatti.karvonen@pispalanit.fi>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+music21 = "^9.9.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,77 @@
+X: 1
+T: from C:\f73c5dd3e4a2c80e967be5d74d08f542229baee34d87cad6953f6a2ceb2b0786_input.tmp
+M: 4/4
+L: 1/8
+Q:1/4=120
+K:E % 4 sharps
+V:1
+%%MIDI program 71
+%%MIDI program 71
+BB2c B2 A2| \
+G2 z6| \
+BA =GF BA GF| \
+=G/2F/2E z2 G/2F/2E z2|
+e=d =cB ed cB| \
+=c/2B/2A z2 c/2B/2A z2| \
+fd2e f2 ed| \
+eB2B B2 A=G|
+=c/2B/2A z2 c/2B/2A z2| \
+B2 z6| \
+BA =GF BA GF| \
+=G/2F/2E z2 G/2F/2E z2|
+e=d =cB ed cB| \
+=c/2B/2A z2 c/2B/2A z2| \
+fd2e f2 ed| \
+eB2B B2 A=G|
+=c/2B/2A z2 c/2B/2A z2| \
+B2 z6| \
+z8| \
+z8|
+gg2a g2 f2| \
+g4 e4| \
+z8| \
+z8|
+gg2a g2 f2| \
+e2 z6| \
+e/2d/2e/2f/2 ez a/2g/2a/2b/2 c'z| \
+g/2=g/2^g/2a/2 g/2f/2e/2d/2 ez3|
+Bg2a g/2e/2B f/2d/2B| \
+e2 B2 z4| \
+e/2d/2e/2f/2 ez a/2g/2a/2b/2 c'z| \
+g/2=g/2^g/2a/2 g/2f/2e/2d/2 ez3|
+BB2c B2 d2| \
+e2 z6| \
+BB2c B2 A2| \
+G2 z6|
+BA =GF BA GF| \
+=G/2F/2E z2 G/2F/2E z2| \
+e=d =cB ed cB| \
+=c/2B/2A z2 c/2B/2A z2|
+fd2e f2 ed| \
+eB2B B2 A=G| \
+=c/2B/2A z2 c/2B/2A z2| \
+B2 z6|
+BA =GF BA GF| \
+=G/2F/2E z2 G/2F/2E z2| \
+e=d =cB ed cB| \
+=c/2B/2A z2 c/2B/2A z2|
+fd2e f2 ed| \
+eB2B B2 A=G| \
+=c/2B/2A z2 c/2B/2A z2| \
+B2 z6|
+z8| \
+z8| \
+gg2a g2 f2| \
+g4 e4|
+z8| \
+z8| \
+gg2a g2 f2| \
+e2 z6|
+e/2d/2e/2f/2 ez a/2g/2a/2b/2 c'z| \
+g/2=g/2^g/2a/2 g/2f/2e/2d/2 ez3| \
+Bg2a g/2e/2B f/2d/2B| \
+e2 B2 z4|
+e/2d/2e/2f/2 ez a/2g/2a/2b/2 c'z| \
+g/2=g/2^g/2a/2 g/2f/2e/2d/2 ez3| \
+BB2c B2 d2| \
+e2 B2 G2 
