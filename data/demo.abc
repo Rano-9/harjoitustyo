@@ -1,33 +1,42 @@
-X: 1 
-T: demo from markov 
-M: 9/8
-L: 1/8
-Q:1/4=120
-K: Bmin
-V:1
 
-BDEF2
-GAEE
-BEEA
-Bcdc
-dDAF
-EAAG
-FEDA
-FE2FG
-ABBD
-EF2GA
-EEBE
-dcBA
-EEBE
-dcBA
-z6a/2g/2a/2
-b/2czg/2
-g/2g/2a/2g/2
-f/2e/2d/2e
-z3BB2c
-B2d2e2B2
-G2GAE
-EBEd
-cBAb/2
-czg/2g/2
-g/2a/2g/2f/2
+    X: 1 
+
+    T: demo from markov 
+ 
+    M: 9/8 
+
+    L: 1/8 
+
+    Q:1/4=120 
+
+    K: Bmin 
+
+    V:1 
+
+    |
+
+ag2cA
+eGAE
+d2efB2
+ag2F/2E
+z2B2EE
+Efzg/2
+b/2cGA
+Ed2ag2
+B/2Az6c/2
+AEFA
+g2aBE
+EEfF/2
+Ez2B2A
+EFAE
+EEfz
+g/2efB2
+DAc2b/2
+ccAe
+zg/2dc
+AcGA
+Ed2g2a
+BAEF
+AGAE
+d2F/2Ez2
+B2cAe

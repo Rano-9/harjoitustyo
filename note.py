@@ -7,7 +7,9 @@ class note:
 
 
     def __eq__(self, value):
-        return self.note[:1] == value.note[:1]
+        if isinstance(value,str):
+            return self.note[:1] == value
+        return self.note == value.note.note
         
 
 class notes:
@@ -35,6 +37,7 @@ if __name__ == "__main__":
 
     test5 = note("B2")
 
+    print(str(test5) == "B")
     print(test5)
     print(test1 == test3)
     print(test1 == test2)

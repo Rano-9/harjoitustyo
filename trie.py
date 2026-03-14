@@ -1,58 +1,36 @@
 class TrieNode():
 
     def __init__(self, note=None):
-        self.nodes = {}
         self.note = note
-        self.isLeaf = False
+        if self.note is not None:
+            self.real = note.note
+        else:
+            self.real = None
+        self.nodes = dict()
+        self.line = ""
+        self.end = False
 
-
-from random import randint
-from random import choice
-from note import note, notes
-
+from note import note
 class Trie():
 
     def __init__(self):
         self.root = TrieNode()
+        pass
 
     def insert(self,key):
-        curr = self.root
-        fail = 0
-        
-        for c in key:
-            avain = str(c)
+        current = self.root
+        for i in key:
+            current = self.root
+            for l in i:
+                new_node = TrieNode(l)
+                try:
+                    current.nodes[str(l)].add(new_node)
+                except KeyError:
+                    current.nodes[str(l)] = set()
+                    current.nodes[str(l)].add(new_node)
 
-            try:
-                curr = curr.nodes[avain]
+                current = new_node
+            current.end =True
 
-            except KeyError:
-                fail += 1
-                curr.nodes[avain] = TrieNode(c)
-                curr = curr.nodes[avain]
-
-        curr.isLeaf = True
-    
-    def next(self,node:TrieNode = None):
-
-        if node is None:
-            curr = self.root
-        
-        else:
-            curr = node
-        
-        keys = list(curr.nodes.keys())
-        try:
-                
-            key = choice(keys)
-            note = curr.nodes[key].note
-            return note, curr.nodes[key]
-        except IndexError:
-            return None, None
-        
-    def search(self,key):
-        
-        curr = self.root
-        
-        
-        
-        
+    def next(self):
+        pass

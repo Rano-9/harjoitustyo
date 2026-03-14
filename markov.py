@@ -2,8 +2,10 @@ from stripper import stripper
 from random import choice
 
 file = open("data/demo.abc","w")
-node = None
-puu, alustus = stripper()
+puu, _ = stripper()
+key = choice(list(puu.root.nodes.keys()))
+node = next(iter(puu.root.nodes[key]))
+note = node.real
 
 file.write("""
     X: 1 \n
@@ -17,11 +19,18 @@ file.write("""
 """)
 
 for i in range(100):
-    key, node = puu.next(node)
+
     if i % 4 == 0:
         file.write("\n")
-    if key is None:
-        key, node = puu.next(None)
-        file.write(key.note)
+    if note is None:
+        key = choice(list(puu.root.nodes.keys()))
+        node = next(iter(node.nodes[key]))
+        note = node.real
     else:
-        file.write(key.note)
+        file.write(node.real)
+        if node.end:
+            key = choice(list(puu.root.nodes.keys()))
+            node = next(iter(puu.root.nodes[key]))
+        else:
+            key = choice(list(node.nodes.keys()))
+            node = next(iter(node.nodes[key]))
