@@ -2,6 +2,8 @@
 
 Harjoitustyö on tehty pythonilla. 
 
+Opiskelen tietojenkäsittelyn kandilinjalla
+
 Hallinnoin hyvin vain pythonia, ymmärrän muita kielejä pienissä määrin.
 
 ### Musiikin generoiminen markovin ketjuilla
