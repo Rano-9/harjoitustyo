@@ -4,7 +4,9 @@ Harjoitustyö on tehty pythonilla.
 
 Projektissa ei ole vielä mitään poetry riippuvuuksia
 
-Koodin saa käynistämään käyttämällä
-    python3 markov.py
+Koodin saa käynistymään komennolla
+    `python3 markov.py`
 
-Tuotoksen näkee kansiosta kappaleet ja demo.abc
+Tuotoksen näkee kansiosta `kappaleet\demo.abc` 
+
+nuotit voi kuunnella esimkerkiksi verkossa olevilta muuntajilta kuten https://notabc.app/abc-converter/ 
