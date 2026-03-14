@@ -5,13 +5,16 @@ file = open("data/demo.abc","w")
 node = None
 puu, alustus = stripper()
 
-file.write("X: 1 \n")
-file.write("T: demo from markov \n")
-file.write(alustus["M"] + "\n")
-file.write(alustus["L"] + "\n")
-file.write(alustus["Q"] + "\n")
-file.write(alustus["K"] + "\n")
-file.write(alustus["V"] + "\n")
+file.write("""
+    X: 1 \n
+    T: demo from markov \n 
+    M: 9/8 \n
+    L: 1/8 \n
+    Q:1/4=120 \n
+    K: Bmin \n
+    V:1 \n
+    |
+""")
 
 for i in range(100):
     key, node = puu.next(node)

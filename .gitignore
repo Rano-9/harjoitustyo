@@ -217,5 +217,5 @@ __marimo__/
 .streamlit/secrets.toml
 
 # Omia ignoreja
- cycler.py
+cycler.py
 
