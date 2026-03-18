@@ -1,5 +1,4 @@
 from trie import Trie
-from note import note, notes
 import glob
 
 
