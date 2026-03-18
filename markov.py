@@ -1,10 +1,10 @@
 from music21 import converter
 
-from stripper import stripper
+from parser import parser
 from random import choices
 
 
-puu, _ = stripper()
+puu, _ = parser()
 
 haettavat, painotus, _ = puu.search([])
 viim_haku = [choices(population=haettavat,weights=painotus)[0].key]

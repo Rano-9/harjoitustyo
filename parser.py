@@ -4,7 +4,7 @@ import glob
 
 
 
-def stripper():
+def parser():
     puu = Trie()
     ## The 12 Notes: C, C#, D, D#, E, F, F#, G, G#, A, A#, B.
     kirjasto = {
@@ -117,4 +117,4 @@ def stripper():
     return puu, kaikki
 
 if __name__ == "__main__":
-    puusta = stripper()
+    puusta = parser()
