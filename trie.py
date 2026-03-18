@@ -1,5 +1,6 @@
 class TrieNode():
 
+    # yhteen nodeen tallennettaan kuinka usein nodessa käyty, muut nodet ja mikä avain oli kun node lisättiin
     def __init__(self,key):
         self.freq = 0
         self.nodes = dict()
@@ -42,4 +43,4 @@ class Trie():
             nodes.append(i)
             freq.append(i.freq)
 
-        return nodes,freq, current
+        return nodes, freq, current
