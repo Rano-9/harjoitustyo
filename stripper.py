@@ -6,13 +6,30 @@ import glob
 
 def stripper():
     puu = Trie()
-    muu = set()
+    kirjasto = {
+    "a" :52,
+    "b" :53,
+    "c" :47,
+    "d" :48,
+    "e" :49,
+    "f" :50,
+    "g" :51,
+    "z" :0,
+    "A" :45,
+    "B" :46,
+    "C" :40,
+    "D" :41,
+    "E" :42,
+    "F" :43,
+    "G" :44
+}
 
     
     files = glob.glob("data/kappaleet/*.abc")
     print(files)
-    nuotit = []
+
     for f in files:
+        nuotit = []
         alustus = dict()
         alustettu = False
         
@@ -45,23 +62,28 @@ def stripper():
             elif l.startswith("%"):
                 pass
             else:
-                for i, v in enumerate(l):
+                for v in l:
                     if v in "CDEFGABcdefgabz":
-                        muu.add(v)
-                        if i+1 < len(l) and l[i+1] in ("0123456789"):
-                            nuotit.append(note(l[i:i+2]))
-                        elif i+2 < len(l) and l[i+1] == "/" and l[i+2] in ("0123456789"):
-                            nuotit.append(note(l[i:i+3]))
-                        else:
-                            nuotit.append(note(v))
+                        nuotit.append(kirjasto[v])
+        
+        kolmikot = []
+        for i, v in enumerate(nuotit):
+            kolmikot.append([])
+            kolmikot[-1].append(v)
+            try:
+                kolmikot[-2].append(v)
+            except IndexError:
+                pass
+            try:
+                kolmikot[-3].append(v)
+            except IndexError:
+                pass
 
+        for x in kolmikot:
+            if len(x) == 3:
+                puu.insert(x)
 
-            puu.insert([[x[0],x[1]] for x in zip(nuotit[::2], nuotit[1::2])])
-            puu.insert([[x[0],x[1],x[2]] for x in zip(nuotit[::2], nuotit[1::2],nuotit[2::3])])
-            puu.insert([[x[0],x[1],x[2],x[3]] for x in zip(nuotit[::2], nuotit[1::2],nuotit[2::3],nuotit[3::4])]
-    )
-    #puu.cycle()
-    return puu, nuotit
+    return puu, kolmikot
 
 if __name__ == "__main__":
     puusta = stripper()
