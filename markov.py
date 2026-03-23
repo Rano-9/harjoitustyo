@@ -1,10 +1,13 @@
-from music21 import converter
+# pylint ei osaa lataa music21
+from music21 import converter # pylint: disable= import-error
 
+import glob
 from parser import parser
 from random import choices
 
-
-puu, _ = parser()
+files = glob.glob("data/kappaleet/Harjoitukset_C_asteikolla/*.abc")
+print(files)
+puu, _ = parser(files)
 
 haettavat, painotus, _ = puu.search([])
 viim_haku = [choices(population=haettavat,weights=painotus)[0].key]

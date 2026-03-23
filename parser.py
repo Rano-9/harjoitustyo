@@ -3,7 +3,7 @@ import glob
 
 
 
-def parser():
+def parser(files):
     puu = Trie()
     ## The 12 Notes: C, C#, D, D#, E, F, F#, G, G#, A, A#, B.
     kirjasto = {
@@ -44,8 +44,7 @@ def parser():
 }
 
     
-    files = glob.glob("data/kappaleet/Harjoitukset_C_asteikolla/*.abc")
-    print(files)
+
     kaikki= []
     for f in files:
         nuotit = []
@@ -92,9 +91,9 @@ def parser():
                         if  i+1 < len(rivi)-1:
                             if rivi[i+1] in ",'":
                                 if rivi[i+1] == ",":
-                                    nuotti += 1
+                                    nuotti -= 12
                                 else:
-                                    nuotti -= 1
+                                    nuotti += 12
                             nuotit.append(nuotti)
                         nuotti = 0
 
@@ -116,4 +115,6 @@ def parser():
     return puu, kaikki
 
 if __name__ == "__main__":
-    puusta = parser()
+    files = glob.glob("data/kappaleet/Harjoitukset_C_asteikolla/*.abc")
+    print(files)
+    puusta = parser(files)
