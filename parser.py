@@ -7,40 +7,21 @@ def parser(files):
     puu = Trie()
     ## The 12 Notes: C, C#, D, D#, E, F, F#, G, G#, A, A#, B.
     kirjasto = {
-    "Ga":35,
-    "yGa":36,
-    "Aa":37,
-    "yAa":38,
-    "Ba":39,
-    "C":40,
-    "yC":41,
-    "D":42,
-    "yD":43,
-    "E":44,
-    "F":45,
-    "yF":46,
-    "G":47,
-    "yG":48,
-    "A":49,
-    "yA":50,
-    "B":51,
-    "c":52,
-    "yc":53,
-    "d":54,
-    "yd":55,
-    "e":56,
-    "f":57,
-    "yf":58,
-    "g":59,
-    "yg":60,
-    "a":61,
-    "ya":62,
-    "b":63,
-    "cy":64,
-    "ycy":65,
-    "dy":66,
-    "ydy":67,
-    "z":0
+    "C":48,
+    "D":50,
+    "E":52,
+    "F":53,
+    "G":55,
+    "A":57,
+    "B":59,
+    "c":60,
+    "d":62,
+    "e":64,
+    "f":65,
+    "g":67,
+    "a":69,
+    "b":71,
+    "z":2
 }
 
     
@@ -48,6 +29,7 @@ def parser(files):
     kaikki= []
     for f in files:
         nuotit = []
+        nuotti = 0
         alustus = dict()
         alustettu = False
         with open(f,"r") as tiedosto:
@@ -82,26 +64,36 @@ def parser(files):
             elif rivi.startswith("%"):
                 pass
             else:
-                nuotti = 0
+                if nuotti != 0:
+                    nuotit.append(nuotti)
+                    nuotti = 0
+        
                 for i,v in enumerate(rivi):
-                
-                    if v in "CDEFGABcdefgabz":
-                        
-                        nuotti += kirjasto[v]
-                        if  i+1 < len(rivi)-1:
-                            if rivi[i+1] in ",'":
-                                if rivi[i+1] == ",":
-                                    nuotti -= 12
-                                else:
-                                    nuotti += 12
+                    
+                    if v in "_^":
+                        if nuotti != 0:
                             nuotit.append(nuotti)
-                        nuotti = 0
-
-                    elif v in "_^":
-                        if v == "^":
-                            nuotti += 1
-                        else:
+                            nuotti = 0
+                        if v == "_":
                             nuotti -= 1
+                        else:
+                            nuotti += 1
+                        
+
+                    elif v in "cdefgabCDEFGABz":
+                        
+                        if nuotti != 0 and abs(nuotti) != 1:
+                            nuotit.append(nuotti)
+                            nuotti = 0
+                        nuotti += kirjasto[v]
+
+                    elif v in ",'":
+                        if v == ",":
+                            nuotti -= 12
+                        else:
+                            nuotti += 12
+        nuotit.append(nuotti)
+
         
         kolmikot = []
         for i, v in enumerate(nuotit):

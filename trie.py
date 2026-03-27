@@ -7,6 +7,15 @@ class TrieNode():
         self.key = key
         self.end = False
 
+    def __eq__(self, value):
+        return self.key == value
+
+    def __str__(self):
+        return str(self.key)
+    
+    def __int__(self):
+        return self.key
+
 class Trie():
 
     def __init__(self):
@@ -28,9 +37,9 @@ class Trie():
                 current.freq += 1
         current.end = True
 
-    def search(self,key):
+    def search(self,keys):
         current = self.root
-        for i in key:
+        for i in keys:
             try:
                 current = current.nodes[i]
             except KeyError:
