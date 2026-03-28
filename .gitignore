@@ -218,4 +218,4 @@ __marimo__/
 
 # Omia ignoreja
 cycler.py
-
+*.gv*

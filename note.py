@@ -1,4 +1,4 @@
-class note:
+class Note:
     def __init__(self,key):
         self.note = key
 
@@ -12,34 +12,23 @@ class note:
         return self.note == value.note.note
         
 
-class notes:
-    def __init__(self):
-        self.notes = []
+class Notes:
+    def __init__(self,notes):
+        self.notes = notes
+        self.last = notes[-1]
     
-    def insert(self, key):
-        self.notes.append(key)
-
-
     def __str__(self):
         line = ""
         for n in self.notes:
-            line += str(n)
+            line += " " + str(n)
         return line
     
+    def __iter__(self):
+        for i in self.notes:
+            yield i
+    
+
+
 
 if __name__ == "__main__":
-
-    # käsin testausta että note == note toimii
-    test1 = note("g/2")
-    test2 = note("G/2")
-    test3 = note("g")
-    test4 = note("G")
-
-    test5 = note("B2")
-
-    print(str(test5) == "B")
-    print(test5)
-    print(test1 == test3)
-    print(test1 == test2)
-    print(test2 == test4)
-    print(test3 == test4)
+    pass

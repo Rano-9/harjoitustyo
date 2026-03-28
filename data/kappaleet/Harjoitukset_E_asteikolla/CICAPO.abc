@@ -4,9 +4,6 @@ M: 4/4
 L: 1/8
 Q:1/4=120
 K:E % 4 sharps
-V:1
-%%MIDI program 71
-%%MIDI program 71
 BB2c B2 A2| \
 G2 z6| \
 BA =GF BA GF| \

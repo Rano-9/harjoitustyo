@@ -1,3 +1,5 @@
+from note import Notes
+
 class TrieNode():
 
     # yhteen nodeen tallennettaan kuinka usein nodessa käyty, muut nodet ja mikä avain oli kun node lisättiin
@@ -11,10 +13,12 @@ class TrieNode():
         return self.key == value
 
     def __str__(self):
-        return str(self.key)
-    
-    def __int__(self):
-        return self.key
+        if isinstance((self.key),int):
+            return str(self.key)
+        string = ""
+        for i in self.key:
+            string += " " + str(i)
+        return string
 
 class Trie():
 
@@ -24,25 +28,39 @@ class Trie():
     def insert(self,keys):
         current = self.root
         for i in keys:
-            try:
-                
-                if current.nodes[i]:
-                    current = current.nodes[i]
-                    current.freq +=1
+            if isinstance(i,list):
+                try:
+                    if current.nodes[i[0]]:
+                        current = current.nodes[i[0]]
+                        current.freq +=1
 
-            except KeyError:
-                new_node = TrieNode(i)
-                current.nodes[i] = new_node
-                current = new_node
-                current.freq += 1
+                except KeyError:
+                    new_node = TrieNode(Notes(i))
+                    current.nodes[i[0]] = new_node
+                    current = new_node
+                    current.freq += 1
+            else:
+                try:
+                    if current.nodes[i]:
+                        current = current.nodes[i]
+                        current.freq +=1
+
+                except KeyError:
+                    new_node = TrieNode(i)
+                    current.nodes[i] = new_node
+                    current = new_node
+                    current.freq += 1
         current.end = True
 
     def search(self,keys):
         current = self.root
         for i in keys:
+            
             try:
-                current = current.nodes[i]
+                current = current.nodes[i.last]
+                
             except KeyError:
+                
                 return None, None, None
             
         freq = []
@@ -51,5 +69,4 @@ class Trie():
         for i in current.nodes.values():
             nodes.append(i)
             freq.append(i.freq)
-
-        return nodes, freq, current
+        return nodes, freq, current.key

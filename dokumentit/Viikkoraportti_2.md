@@ -18,4 +18,4 @@ Trier rakenteet ovat todellakin simppeleitä. Ja markovin ketjun käyttö on sel
 
 Mitään selkeää vaikeuksia aiheuttavia asioita ei ole nytten ilmennyt. Heti kun pääsi eteenpäin trie rakenteessa aukesi heti miten tämän voisi edetä.
 
-Käytetty aikaa 3 tuntia.
+Käytetty aikaa 9 tuntia.

@@ -1,14 +1,15 @@
 import unittest
 from trie import Trie, TrieNode
-from parser import parser
+from parser import Parser
 from os import path
 
 class TestParser(unittest.TestCase):
     
     def setUp(self):
         self.file = ["tests/data/mock.abc"]
-        self.result, _ = parser(self.file)
-        return super().setUp()
+        self.parsija = Parser()
+        self.result, _ = self.parsija.parser(self.file)
+
     
     def test_Parser(self):
 
@@ -32,7 +33,7 @@ class TestParser(unittest.TestCase):
         # Sekä tärkeä edge case jossa on d', E', e eli 74, 56, 56. ' merkki toimii oudosti.
 
         file = ["tests/data/mock2.abc"]
-        result, _ = parser(file)
+        result, _ = self.parsija.parser(file)
         nodes, _, search =  result.search([60])
         
         self.assertEqual(search.key,60)
@@ -51,6 +52,18 @@ class TestParser(unittest.TestCase):
         self.assertFalse(66 in nodes)
         self.assertTrue(64 in nodes)
 
+    def test_parser_löytää_sävellajin(self):
+        self.assertIsNotNone(self.parsija.key)
+
+    def test_parser_löytää_muun_kuin_C_sävellajin(self):
+        result = self.parsija.parser(["tests/data/mock3.abc"])
+        self.assertIsNot(self.parsija.key, "C")
+        self.assertIs(self.parsija.key, "D")
+    
+    def test_parserin_transponoinja_toimii(self):
+        result, _ = self.parsija.parser(["tests/data/mock3.abc"])
+        self.assertIsNotNone(result.search([62])[2])
+        self.assertIsNotNone(result.search([74])[2])
 
 def drill(node):
     node = node[0]

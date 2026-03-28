@@ -1,0 +1,11 @@
+## Täysin mock dataa ei käytettävää abc notaatiota. 
+Testataan osaako löytää D sävellajin, sekä osaako transponoida sen oikein 
+eli C' -> d 62
+    c' -> d' 74
+    D  -> E 52
+    d' -> e' 76
+
+
+K:D
+V:1
+| b c' g e
