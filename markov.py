@@ -5,15 +5,11 @@ import glob
 from parser import Parser
 from random import choices
 
-directories = glob.glob("data/kappaleet/*/")
-files = []
-for i in directories:
-    for l in glob.glob(i+"*.abc"):
-        files.append(l)
-print(files)
-depth = 4
+directories = glob.glob("data/kappaleet/*.abc")
+print(f"ladattu: {len(directories)} kappaletta")
+depth = 6
 parsija = Parser(depth)
-puu, _ = parsija.parser(files)
+puu, _ = parsija.parser(directories)
 
 haettavat, painotus, _ = puu.search([])
 
@@ -54,10 +50,13 @@ kirjasto = {
     73:"^c'",
     74:"d'" ,
     75:"^d'",
-    76:"e'"
+    76:"e'",
+    77:"f'",
+    78:"^f'",
+    79:"g'"
 }
 
-tauot = 0
+
 with open("data/demo.abc","w") as file:
     file.write(
 """X: 1
@@ -68,28 +67,46 @@ Q: 1/4=120
 K: C
 V: 1
 """)
-    line = "| z z "
+    peruutuksia = 0
+    tauot = 0
+    tahti = []
+    line = "| "
     viim_viim =[]
-    for i in range(-11,96):
+    i = 0
+    while True:
+        if i == 50:
+            break
+        tahti.append(viim_haku[-1])
 
-        if i % 4 == 0:
-            file.write(f"{line}\n")
+        if len(tahti) == 4:
+            for x in tahti:
+                line += kirjasto[x] + " "
+            file.write(f"{line}|\n")
             line = "| "
-        
-        for i in viim_haku[-1].notes:
-            line += kirjasto[i] + " "
-
+            i += 1
+            tahti.clear()
+                       
         haettavat,painotus,nuotti = puu.search(viim_haku)
 
         if nuotti is None:
 
             # tapaus jossa saatiin 0 osumaa. Palataan yksi askel taakse ja lasketaan uusi nuotti
             haettavat,painotus,nuotti = puu.search(viim_viim[:2])
+            peruutuksia += 1
             
             # Jos kävi niin, että kaksi kertaa 0 osumaa, huonotuuri harjoitusmateriaalia liian vähän lopetetaan.
             if nuotti is None:
                 #lisätään nuottiin kohta joka ilmaisee että katkesi
+                
                 tauot += 1
+                for i in range(4-len(tahti)):
+                    line += "z "
+                tahti.clear()
+                file.write(f"{line}|\n")
+                line = "| z4 |"
+                file.write(f"{line}\n")
+                line = "| "
+                i += 2
 
                 #aloitetaan rootista
                 haettavat, painotus, _ = puu.search([])
@@ -100,7 +117,8 @@ V: 1
             viim_viim = viim_haku
             viim_haku = viim_haku[1:]
 
-print("Lisättyjä taukoja: ",tauot)
+print("Lisättyjä taukoja:",tauot)
+print("Perrutettu:",peruutuksia,"kertaa")
 
 
 cl = instrument.Clarinet()

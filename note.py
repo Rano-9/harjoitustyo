@@ -1,6 +1,8 @@
 class Note:
-    def __init__(self,key):
+    def __init__(self,key,measure=None):
         self.note = key
+        self.measure = measure
+        self.length = None
 
     def __str__(self):
         return self.note[:1]

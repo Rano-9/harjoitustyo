@@ -41,13 +41,13 @@ class Trie():
                     current.freq += 1
             else:
                 try:
-                    if current.nodes[i]:
-                        current = current.nodes[i]
+                    if current.nodes[i.note]:
+                        current = current.nodes[i.note]
                         current.freq +=1
 
                 except KeyError:
-                    new_node = TrieNode(i)
-                    current.nodes[i] = new_node
+                    new_node = TrieNode(i.note)
+                    current.nodes[i.note] = new_node
                     current = new_node
                     current.freq += 1
         current.end = True
@@ -57,7 +57,7 @@ class Trie():
         for i in keys:
             
             try:
-                current = current.nodes[i.last]
+                current = current.nodes[i]
                 
             except KeyError:
                 
