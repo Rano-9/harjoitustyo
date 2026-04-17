@@ -7,7 +7,7 @@ from random import choices
 
 directories = glob.glob("data/kappaleet/*.abc")
 print(f"ladattu: {len(directories)} kappaletta")
-depth = 6
+depth = 4
 parsija = Parser(depth)
 puu, _ = parsija.parser(directories)
 
@@ -77,10 +77,11 @@ V: 1
         if i == 50:
             break
         tahti.append(viim_haku[-1])
-
         if len(tahti) == 4:
+            
             for x in tahti:
-                line += kirjasto[x] + " "
+                note, length = x.split(",")
+                line += kirjasto[int(note)] + length + " "
             file.write(f"{line}|\n")
             line = "| "
             i += 1
@@ -121,11 +122,11 @@ print("Lisättyjä taukoja:",tauot)
 print("Perrutettu:",peruutuksia,"kertaa")
 
 
-cl = instrument.Clarinet()
-
-score = converter.parse("data/demo.abc",format="ABC")
-score.insert(0,cl)
-mf = midi.translate.streamToMidiFile(score)
-
-cl.autoAssignMidiChannel([])
-score.write("midi", fp="data/demo.midi")
+# cl = instrument.Clarinet()
+# 
+# score = converter.parse("data/demo.abc",format="ABC")
+# score.insert(0,cl)
+# mf = midi.translate.streamToMidiFile(score)
+# 
+# cl.autoAssignMidiChannel([])
+# score.write("midi", fp="data/demo.midi")

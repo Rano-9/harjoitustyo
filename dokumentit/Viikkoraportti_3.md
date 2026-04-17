@@ -11,7 +11,9 @@ Tavoitteena olisi nähdä vähenisikö itsestään toistuvat nuotti generaatiot 
 
 ### Miten ohjelma on edistynyt?
 
-Nytten pystyy ottamaan vastaan muita kuin C sävellajin harjoitusdataa ja transponoi. Testaus tehty nyt vain D sävellajilla, kehitetään testausta. Kompastusta tullut harjoitusdatan kohdalla. Harjoitusdataa pitäisi lisätä niin todennäköisyys törmätä ketjuun jolle ei ole jatkoa vähenee.
+Nytten pystyy ottamaan vastaan muita kuin C sävellajin harjoitusdataa ja transponoi. Testaus tehty nyt vain D sävellajilla, kehitetään testausta. Kompastusta tullut harjoitusdatan kohdalla. Harjoitusdataa pitäisi lisätä niin todennäköisyys törmätä ketjuun jolle ei ole jatkoa vähenee. 
+
+Ohjelma ratkaisee tämän lisäämällä täyden tauon ja aloittaa ketjun alusta. Nytten generoidussa musiikissa on 
 
 ### Mikä jäi epäselväksi tai tuottanut vaikeuksia?
 

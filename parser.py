@@ -49,7 +49,6 @@ class Parser():
                         
                         key = rivi[2:]
                         key = key.split(" ")[0]
-                        print("Löytyi avain",key,f)
                         next = True
                 if measure is None:
                     if rivi.startswith("M:"):
@@ -60,6 +59,11 @@ class Parser():
                     if rivi.startswith("L:"):
                         length = rivi[2:]
                         length = length.split(" ")[0]
+                        
+                        if length == "":
+                            length = rivi[2:]
+                            length = length.split(" ")[1]
+
                         next = True
 
                 if length is None or measure is None or key is None or next:
@@ -80,95 +84,49 @@ class Parser():
 
                         elif v == "[" and rivi[i+1] == "M":
                             measure = rivi[i+3:i+6]
+                        
 
                         if v in "ABCDEFGabcdefg":
-                            nuotti = Note(transpose(self.kirjasto[v],key),measure)
+                            nuotti = Note(transpose(self.kirjasto[v],key),measure,length)
+                            perus = self.kirjasto[v]
 
                             osoitin = rivi[i-1]
                             if osoitin in "_^":
                                 if osoitin == "_":
                                     nuotti.note -= 1
+                                    perus -=1
                                 else: 
                                     nuotti.note += 1
+                                    perus += 1
                             
                             osoitin = rivi[i+1]
 
                             if osoitin in ",'":
                                 if osoitin == ",":
                                     nuotti.note -= 12
+                                    perus -= 12
                                 else:
                                     nuotti.note += 12
+                                    perus += 12
 
-                            if nuotti.note >= 72:
+                            if perus >= 72 or osoitin in ",'":
                                 osoitin = rivi[i+2]
 
                                 if osoitin in "1234567890":
-                                    nuotti.length = osoitin
+                                    nuotti.modifiedlength = osoitin
+
                                 elif osoitin == "/" and rivi[i+3] in "1234567890":
-                                    nuotti.length = rivi[i+2:i+4]
+                                    nuotti.modifiedlength = rivi[i+2:i+4]
                             else:
                                 if osoitin in "1234567890":
-                                    nuotti.length = osoitin
+                                    nuotti.modifiedlength = osoitin
+
+
                                 elif osoitin == "/" and rivi[i+2] in "1234567890":
-                                    nuotti.length = rivi[i+1:i+3]
+                                    nuotti.modifiedlength = rivi[i+1:i+3]
+
+                            nuotti.fix()
                             nuotit.append(nuotti)
-
-
-#                        #Katsotaan onko ylennyksiä tai alennuksia
-#                        elif v in "_^":
-#
-#                            #Alennetaan tai ylennetään yhdellä
-#                            if v == "_":
-#                                nuotti -= 1
-#                            else:
-#                                nuotti += 1
-#                            
-#                        #Katsotaan mikänuotti kyseessä
-#                        elif v in "cdefgabCDEFGABz":
-#                            nuotti += self.kirjasto[v]
-#            
-#                        #Katsotaan oliko se ylä vai ala rekisterissä
-#                        elif v in ",'":
-#
-#                            if v == ",":
-#                                nuotti -= 12
-#                            else:
-#                                nuotti += 12
-#
-#                        #Katsotaan kuinka pitkään soitetaan
-#                        #Jos soitetaan puolet annetusta pituudesta
-#                        elif v in "/" and rivi[i+1] in "1234567890" and not done:
-#                            nuotit[-1].length = rivi[i:i+2]
-#                            done = True
-#
-#                        elif v in "1234567890" and not done and nuotti != 0:
-#                            #Lisätään viimeisimpään lisättyyn nuottiin kesto
-#                            breakpoint()
-#                            nuotit[-1].length = v
-#                            done = True
-#
-#                        #Merkitään nuotti -3 jotta voidaan välttyä tupla nuoteilta
-#
-#                        #Katsotaan onko seuraava merkki nuotti
-#                        #yritetään välttää index erroria
-#                        try:
-#                            seuraava = rivi[i+1]
-#                        except IndexError:
-#                            seuraava = ""
-#                        if seuraava in "cdefgabCDEFGABz_^|" and nuotti != 0:
-#                            #Jos nuotti, tahtiviiva, ylennys tai alennus kirjataan nykyinen nuotti
-#                            change = transpose(nuotti,key)
-#                            nuotit.append(Note(change))
-#                            if change < 43 and change != 2:
-#                                print("Lisätty outo nuotti",change,nuotti,key)
-#                            nuotti = 0
-#                            done = False
-#
-#                        if nuotti < 43 and nuotti != 2 and nuotti != 0 and nuotti != -3:
-#                            print(rivi,nuotti)
-#                        if change < 43 and change != 2 and change != 0 and change != -3:
-#                            print(rivi,nuotti,change,v,i )
-
 
             syvyys = []
             for i, v in enumerate(nuotit):
