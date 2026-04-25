@@ -1,31 +1,29 @@
 # Transponoidaan kaikki musiikki C avaimeen 
 
 erotus = {
-        "C" : 0 ,
-        "Am": 0 ,
-        "D" : 2 ,
-        "Eb":-2 ,
-        "Bm":-2 ,
-        "E" : 4 ,
-        "Db":-4 ,
-        "C#m":-4,
-        "F" : 6 ,
-        "Cb":-6 ,
-        "Dm": 6,
-        "G" : 8 ,
-        "Bb":-8 ,
-        "Em": 8,
-        "A" : 10,
-        "Ab":-10,
-        "F#m":10,
-        "B" : 12,
-        "Gb":-12,
-        "G#m":12
+    "c am gmix ddor ephr flyd bloc" : 0 ,
+    "d bm bmin amix edor f#phr glyd c#loc" : 2 ,
+    "b g#m f#mix c#dor d#phr elyd a#loc":-2 ,
+    "e c#m bmix f#dor g#phr alyd d#loc" : 4 ,
+    "ab fm ebmix bbdor cphr dblyd gloc":-4 ,
+    "f dm cmix gdor aphr bblyd eloc" : 6 ,
+    "gb ebm dbmix abdor bbphr cblyd floc":-6 ,
+    "g em dmix ador bphr clyd f#loc" : 8 ,
+    "f# d#m c#mix g#dor a#phr blyd e#loc":-8,
+    "a f#m emix bdor c#phr dlyd g#loc" : 10,
     }
+
 def transpose(note,key):
+    return note
     if note == 2:
+
         return note
-    return (note + erotus[key])
+    for i in erotus.keys():
+        if key.lower() in i:
+            return (note + erotus[i])
+        
+    print("ei ollut",key)
+    return note
 
 def check_key(key):
 

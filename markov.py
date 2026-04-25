@@ -5,15 +5,10 @@ import glob
 from parser import Parser
 from random import choices
 
-directories = glob.glob("data/kappaleet/*.abc")
-print(f"ladattu: {len(directories)} kappaletta")
-depth = 4
-parsija = Parser(depth)
-puu, _ = parsija.parser(directories)
+from note import Tahti
 
-haettavat, painotus, _ = puu.search([])
 
-viim_haku = [choices(population=haettavat,weights=painotus)[0].key]
+
 
 kirjasto = {
     2 :"z"  ,
@@ -53,80 +48,110 @@ kirjasto = {
     76:"e'",
     77:"f'",
     78:"^f'",
-    79:"g'"
+    79:"g'",
+    80:"^g'"
 }
-
-
-with open("data/demo.abc","w") as file:
-    file.write(
-"""X: 1
+class Markov():
+    def __init__(self):
+        
+        self.file = """X: 1
 T: demo from markov
 M: 4/4
 L: 1/8
 Q: 1/4=120
 K: C
 V: 1
-""")
-    peruutuksia = 0
-    tauot = 0
-    tahti = []
-    line = "| "
-    viim_viim =[]
-    i = 0
-    while True:
-        if i == 50:
-            break
-        tahti.append(viim_haku[-1])
-        if len(tahti) == 4:
-            
-            for x in tahti:
-                note, length = x.split(",")
-                line += kirjasto[int(note)] + length + " "
-            file.write(f"{line}|\n")
-            line = "| "
-            i += 1
-            tahti.clear()
-                       
-        haettavat,painotus,nuotti = puu.search(viim_haku)
+"""
+        directories = glob.glob("data/kappaleet/*.abc")
+        print(f"ladattu: {len(directories)} kappaletta")
+        self.depth = 3
+        parsija = Parser(self.depth)
+        self.puu, _ = parsija.parser(directories)
 
-        if nuotti is None:
+        haettavat, painotus, _ = self.puu.search([])
 
-            # tapaus jossa saatiin 0 osumaa. Palataan yksi askel taakse ja lasketaan uusi nuotti
-            haettavat,painotus,nuotti = puu.search(viim_viim[:2])
-            peruutuksia += 1
-            
-            # Jos kävi niin, että kaksi kertaa 0 osumaa, huonotuuri harjoitusmateriaalia liian vähän lopetetaan.
-            if nuotti is None:
-                #lisätään nuottiin kohta joka ilmaisee että katkesi
+        self.viim_haku = [choices(population=haettavat,weights=painotus)[0].key]
+
+        self.peruutuksia = 0
+        self.tauot = 0
+        self.tahti = Tahti()
+        self.viim_viim = []
+
+    def tuota_ketju(self):
+        i = 0
+        tahteja = 0
+        line = "| "
+        while True:
+            if i == 50:
+                break
+
+            self.tahti.lisää(self.viim_haku[-1])
+
+            while self.tahti.writable:
+                line, old_line = self.tahti.kirjoita(line,kirjasto)
+                if old_line:
+                    self.file += old_line
+                else:
+                    self.file += line
+                    line = "| "
+                i += 1
+                tahteja += 1
+            if tahteja == 6:
+                self.file += "|\n"
+                tahteja = 0
+            haettavat,painotus,nuotti = self.puu.search(self.viim_haku)
+
+            if haettavat is None:
+                # tapaus jossa saatiin 0 osumaa. Haetaan uusi nuotti viimeisen saadun nuotin mukaan
+                haettavat,painotus,nuotti = self.puu.search(self.viim_haku[-1])
+
+                # Jos kävi niin, että kaksi kertaa 0 osumaa, huonotuuri harjoitusmateriaalia liian vähän haetaan juuresta uusi.
+                if haettavat is None:
+                    haettavat, painotus, _ = self.puu.search([])
                 
-                tauot += 1
-                for i in range(4-len(tahti)):
-                    line += "z "
-                tahti.clear()
-                file.write(f"{line}|\n")
-                line = "| z4 |"
-                file.write(f"{line}\n")
-                line = "| "
-                i += 2
-
-                #aloitetaan rootista
-                haettavat, painotus, _ = puu.search([])
-                viim_haku = [choices(population=haettavat,weights=painotus)[0].key]
+                self.viim_haku = [choices(population=haettavat,weights=painotus)[0].key]
             
-        viim_haku.append(choices(population=haettavat,weights=painotus)[0].key)
-        if len(viim_haku) == depth:
-            viim_viim = viim_haku
-            viim_haku = viim_haku[1:]
+            else:
+                self.viim_haku.append(choices(population=haettavat,weights=painotus)[0].key)
+            
+            if len(self.viim_haku) == self.depth:
+                self.viim_viim = self.viim_haku
+                self.viim_haku = self.viim_haku[1:]
+        
 
-print("Lisättyjä taukoja:",tauot)
-print("Perrutettu:",peruutuksia,"kertaa")
+    def kirjoita_ketju(self):
+        with open("data/demo.abc","w") as demo:
+            for line in self.file:
+                demo.write(line)
+            demo.close()
 
 
-# cl = instrument.Clarinet()
-# 
-# score = converter.parse("data/demo.abc",format="ABC")
-# score.insert(0,cl)
-# mf = midi.translate.streamToMidiFile(score)
-# 
-# cl.autoAssignMidiChannel([])
-# score.write("midi", fp="data/demo.midi")
+def tahdin_kirjoitus(tahti,file,line):
+    for x in tahti:
+        note, length = x.split(",")
+        tahti_pituus += float(length)
+        if not float(length).is_integer():
+            length = f"/{float(length).as_integer_ratio()[1]}"
+        if tahti_pituus <= 4:
+            line += kirjasto[int(note)] + length + " "
+        else:
+            line += kirjasto[int(note)] + str((tahti_pituus - 4))+ "|\n"
+            print(line,tahti_pituus,length,tahti_pituus)
+            file.write(f"{line}")
+            tahti_pituus = tahti_pituus - 4
+
+
+            if not tahti_pituus.is_integer():
+                line += "| " + kirjasto[int(note)] + "/" + str(tahti_pituus.as_integer_ratio()[1]) + " "
+
+            else:
+                line += "| " + kirjasto[int(note)] + "/" + str(int(tahti_pituus)) + " "
+
+
+if __name__ == "__main__":
+    ketju = Markov()
+    ketju.tuota_ketju()
+    ketju.kirjoita_ketju()
+
+    score = converter.parse("data/demo.abc",format="ABC")
+    score.write("midi", fp="data/demo.midi")

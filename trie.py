@@ -1,5 +1,3 @@
-from note import Notes
-
 class TrieNode():
 
     # yhteen nodeen tallennettaan kuinka usein nodessa käyty, muut nodet ja mikä avain oli kun node lisättiin
@@ -26,6 +24,7 @@ class Trie():
 
     def __init__(self):
         self.root = TrieNode(None)
+        self.uniikkia = set()
 
     def insert(self,keys):
         current = self.root
@@ -41,6 +40,7 @@ class Trie():
                 current.nodes[i.key] = new_node
                 current = new_node
                 current.freq += 1
+                self.uniikkia.add(i.key)
         current.end = True
 
     def search(self,keys):
@@ -52,7 +52,7 @@ class Trie():
                 
             except KeyError:
                 
-                return None, None, None
+                return None, None, current.key
             
         freq = []
         nodes = []

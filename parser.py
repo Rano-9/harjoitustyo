@@ -25,7 +25,8 @@ class Parser():
     }
         self.puu = Trie()
         self.depth = depth
-
+        self.uuniikit = set()
+        
     def parser(self,files):
 
         ## The 12 Notes: C, C#, D, D#, E, F, F#, G, G#, A, A#, B.
@@ -34,7 +35,7 @@ class Parser():
             key = None
             measure = None
             length = None
-            done = False
+            skip = ""
             change = 0
             nuotit = []
             nuotti = 0
@@ -43,6 +44,9 @@ class Parser():
                 rivit = tiedosto.read().splitlines()
 
             for rivi in rivit:
+                if type(nuotti) is Note:
+                        print("Toka")
+                        breakpoint()
                 next = False
                 if key is None:
                     if rivi.startswith("K:"):
@@ -70,6 +74,9 @@ class Parser():
                     pass    
                 else:
                     if nuotti != 0:
+                        if type(nuotti) is Note:
+                            print("eka")
+                            breakpoint()
                         change = transpose(nuotti,key)
                         nuotit.append(Note(change))
                         nuotti = 0
@@ -79,14 +86,17 @@ class Parser():
                             nuotti = 0
                             change = 0
                         #Vaihdetaan avainta kun esiintyy uusi avain nuoteissa
-                        if v == "[" and rivi[i+1] == "K":
-                            key = rivi[i+3]
+                        if v == "K":
+                            key = rivi[i+2]
+                            skip = key
 
-                        elif v == "[" and rivi[i+1] == "M":
-                            measure = rivi[i+3:i+6]
+                        elif v == "M":
+                            measure = rivi[i+2:i+5]
                         
+                        elif v == skip:
+                            skip = ""
 
-                        if v in "ABCDEFGabcdefg":
+                        elif v in "ABCDEFGabcdefgz":
                             nuotti = Note(transpose(self.kirjasto[v],key),measure,length)
                             perus = self.kirjasto[v]
 
@@ -98,7 +108,7 @@ class Parser():
                                 else: 
                                     nuotti.note += 1
                                     perus += 1
-                            
+
                             osoitin = rivi[i+1]
 
                             if osoitin in ",'":
@@ -126,7 +136,9 @@ class Parser():
                                     nuotti.modifiedlength = rivi[i+1:i+3]
 
                             nuotti.fix()
+                            self.uuniikit.add(nuotti.key)
                             nuotit.append(nuotti)
+                            nuotti = 0
 
             syvyys = []
             for i, v in enumerate(nuotit):
@@ -136,7 +148,8 @@ class Parser():
                 if len(x) == self.depth:
                     self.puu.insert(x)
             kaikki.append(syvyys)
-
+        print(len(self.uuniikit),"unniikkia nuottia")
+        print(len(self.puu.uniikkia),"uniikkia nuottia puussa")
         return self.puu, kaikki
 
 if __name__ == "__main__":

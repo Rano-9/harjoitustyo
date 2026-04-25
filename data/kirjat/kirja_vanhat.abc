@@ -1,0 +1,260 @@
+X: 1
+T: 
+M: 4/4
+L: 1/8
+Q:1/4=120
+K:E
+BB2c B2 A2| \
+G2 z6| \
+BA =GF BA GF| \
+=G/2F/2E z2 G/2F/2E z2|
+e=d =cB ed cB| \
+=c/2B/2A z2 c/2B/2A z2| \
+fd2e f2 ed| \
+eB2B B2 A=G|
+=c/2B/2A z2 c/2B/2A z2| \
+B2 z6| \
+BA =GF BA GF| \
+=G/2F/2E z2 G/2F/2E z2|
+e=d =cB ed cB| \
+=c/2B/2A z2 c/2B/2A z2| \
+fd2e f2 ed| \
+eB2B B2 A=G|
+=c/2B/2A z2 c/2B/2A z2| \
+B2 z6| \
+z8| \
+z8|
+gg2a g2 f2| \
+g4 e4| \
+z8| \
+z8|
+gg2a g2 f2| \
+e2 z6| \
+e/2d/2e/2f/2 ez a/2g/2a/2b/2 c'z| \
+g/2=g/2^g/2a/2 g/2f/2e/2d/2 ez3|
+Bg2a g/2e/2B f/2d/2B| \
+e2 B2 z4| \
+e/2d/2e/2f/2 ez a/2g/2a/2b/2 c'z| \
+g/2=g/2^g/2a/2 g/2f/2e/2d/2 ez3|
+BB2c B2 d2| \
+e2 z6| \
+BB2c B2 A2| \
+G2 z6|
+BA =GF BA GF| \
+=G/2F/2E z2 G/2F/2E z2| \
+e=d =cB ed cB| \
+=c/2B/2A z2 c/2B/2A z2|
+fd2e f2 ed| \
+eB2B B2 A=G| \
+=c/2B/2A z2 c/2B/2A z2| \
+B2 z6|
+BA =GF BA GF| \
+=G/2F/2E z2 G/2F/2E z2| \
+e=d =cB ed cB| \
+=c/2B/2A z2 c/2B/2A z2|
+fd2e f2 ed| \
+eB2B B2 A=G| \
+=c/2B/2A z2 c/2B/2A z2| \
+B2 z6|
+z8| \
+z8| \
+gg2a g2 f2| \
+g4 e4|
+z8| \
+z8| \
+gg2a g2 f2| \
+e2 z6|
+e/2d/2e/2f/2 ez a/2g/2a/2b/2 c'z| \
+g/2=g/2^g/2a/2 g/2f/2e/2d/2 ez3| \
+Bg2a g/2e/2B f/2d/2B| \
+e2 B2 z4|
+e/2d/2e/2f/2 ez a/2g/2a/2b/2 c'z| \
+g/2=g/2^g/2a/2 g/2f/2e/2d/2 ez3| \
+BB2c B2 d2| \
+e2 B2 G2 
+
+X:1
+T:74th Farewell to Edinburgh
+M:2/4
+L:1/8
+R:Pipe March
+B:Logan’s Collection, Book 3 (c. 1905; No. 10, p. 8)
+Z:AK/Fiddler’s Companion
+K:D
+A>B|ce/a/ f/>A/d/<a/|e>c Ac/e/|f/>A/d/>b/ e/>A/c/<a/|B/>B/B/>c/ BA/B/|
+ce/a/ f/>A/d/<a/|e>c Ac/e/|f/>A/f/<a/ e/>c/d/>B/|c>A A/A/:|
+f>g|a/>e/c/<A/ c/<e/c/<A/|a/>A/f/<a/ ef/g/|a/>e/c/<A/ f/<a/e/>c/|fB B/g/|
+a/>e/c/<A/ c/<e/c/<A/|a/>A/f/<a/ ef/g/|a/>f/g/>e/ f/>d/e/>d/|cA A/A/:|
+A>B|cc/e/ A/c/e/>A/|f>e eA/>c/|cc/e/ A/>c/e/>A/|c>B B/B/|
+cc/e/ A/>c/e/>A/|f>e eA/B/|c/<e/a/>e/ f/>d/e/>d/|c>A A/A/A/B/|
+cc/e/ A/>c/e/>A/|fe eA/B/|c/<e/c/<e/ A/>c/e/>A/|cB B/B/A/B/|
+cc/e/ A/>c/e/>[Aa]|fe eA/B/|c/<e/a/e/ f/>d/e/>d/|cA A/A/||
+|:f/g/|a/>e/f/>d/ c/<A/c/>e/|a/<e/c/<A/ fe/f/|a/>e/f/>d/ c/<A/c/<e/|f/<a/e/c/ Bf/g/|
+A/>e/f/>e/ c/<A/c/<e/|a/>e/f/>d/ c/<A/c/<e/|a/>e/c/<A/ fe/f/|e/>f/a/>e/ f/<a/e/>d/|cA A/A/:|]
+
+X:1
+T:The Blackthorn Stick [4]
+M:C|
+L:1/8
+S:O'Malley Collection
+K:D
+fe | d2 FB AFEF | D2 dc BABc | dF ~F2 AFED | (3EFG FE D>g fe |
+dF ~F2 AE ~E2 | DF ~F2 BABc | d2 FB AFED | (3EFG FE D2 :|
+|: Bc | d2 fd edfd | A2 (3cBA eA (3cBA | defd e2 fg | (3agf (3gfe fdec |
+defd edfd | A2 (3cBA eA (3cBA | defg afbf | afef d2 :||
+
+X:27016
+T:EBENEZER'S BOY (hornpipe)
+B:HOC.106
+C:ABC/arr. BB
+Q:1/4=140
+Y:"buck or wing dance - original"
+M:C|
+L:1/8
+R:hornpipe
+K:D
+A|df2g afbz|a2bf afbf|df2g afbf |1 eB2d cde :|2 agef  d2 ||
+z2|: B,2C2D2E2|^E2F2B,2f2|gefg fdef |1 ecde dcBz :|2 edcd B2   ||
+|:A2|df2g afbz|a2bf afbf|df2g afbf |1 eB2d cde :|2 agef  d2 ||
+
+X: 311
+T: the Banks of Lough Foyle
+T: brua\`ca lo\`ca feabhail
+R: air, waltz, jig
+%S: s:2 b:16(8+8)
+B: O'Neill's 1850 #311
+O: J.O'Neill
+Z: 1999 by John Chambers <jc@trillian.mit.edu>
+Q: "Gaily"
+M: 6/8
+L: 1/8
+K:C
+(G/A/) | c2c (dcd)  | (eg)>e d>cd | e>dc cAG | (GAc) d2 |\
+|  (e/d/) | c2c (d>cd) | (eg)>e d>cd | e>dc cAG |  GAc  c2 :|
+|| (d/e/) | (f2g) age  | (g2e) (d2e) | fga  age | (e/g/)(f/e/)(d/c/)  d2 |\
+|  (e/d/) | c2c (dcd)  | (eg)>e d>cd | e>dc cAG |  GAc  c2 |]
+
+X:10
+T:17th of March 1/10, The
+R:Jig
+C:CD 1, track10
+B:Scan Tester,"I Never Played To Many Posh Dances"
+Z:Chris Partington, 2011 <www.cpartington.plus.com>
+T:St.Patrick's Day
+M:6/8
+L:1/8
+Q:3/8=110
+K:C
+G,|C>B,C CEF|G>AG GEC|DED EDC|A,B,A, A,2G,|
+C>B,C CEF|G>AG GEC|DED EDC|A,2B, C2:|
+G|GAB cde|GAB c2e|g>ag gec|fef d2e|
+ged cde|ged c2e|g>ag gfe|fef +D.C.+d2|
+
+X:1
+T:Allen's Reel
+M:6/8
+L:1/8
+R:Jig
+S:Howe - Complete Preceptor for the Accordeon (1843)
+Z:AK/Fiddler's Companion
+K:C
+G | c2c cBc | d2B G2G | A2A BAB | cGF EDC |
+c2c cBc | d2B G2G | A2A BAB | c2c c2 :|
+|: G | c2G E2G | e2c cde | f2d e2c | ddd d2G |
+c2 G E2G | e2c cde | fag fed | ccc c2 :||
+
+X: 1
+T: O Sole Mio  [C]
+C: music: Eduardo di Capua 1898
+%C: words: Giovanni Capurro
+N: Words by G. Capurro
+Z: 1999 John Chambers <jc@trillian.mit.edu>
+M: 4/4
+L: 1/4
+K:C
+|:  zG FE | D2 C2 | CD EC |  B,2 A,2 | zB, CD |
+B,A, A,2- | A,B, CD |  (A,G,) G,2 |  zG FE | D2 C2 |
+CD EC |  {C}B,2 A,2 | zF ED |  GE DC |  D3 E |  D2{ED}C2 |]|
+zHc HcHB |  (BG) G2 | zB BA |  {A}F4 | zB BA |  {A}F2 F2 |  zD EF |  G4 |
+z2 z G |  _A2 A2 | zF c>_A |  G2 G2 | zE DC |  G4 | zE {DE}D>B, |  C4 :|
+|[  zE DC |  G2 G2 | zG [eG]>[dF] |  [c4E4] |]
+
+X:1
+T:Banks of Marble
+M:2/4
+L:1/8
+K:C
+G2| G G3-| GG FF| E E3-| E2 c2| c4-| cc BA| G4-| G2 G2| F4-| FF GA|\
+G E3-| E2 E2| F4-| FF DB,| C4-| C2 G2| G- G3-| GG FF| E E3-| E2 c2|\
+c4-| cc BA| G4-| G2 G2| F4-| FF GA| G E3-| E2 E2| F4-| FF DB,| C4-|\
+C2 GG| c3 c|e-c c2| A G3-| G2 EF| G4-| GA GF| E4-| E2 GG| c3 c|e-c c2|\
+A G3-| G2 EF| G4-| GA FB,| C4-| C2||
+
+X:1
+T:The Banks of my Own Lovely Lee
+M:6/8
+L:1/8
+K:C
+G/2-F/2| E3/2 D/2 E F3/2 E/2 F| Ged c2 c/2c/2| B3/2 A/2 B DE^F| G3- G2 G/2F/2|\
+E3/2 D/2 E F3/2 E/2 F| Ged c2 c/2c/2| B3/2 A/2 B DE^F| G3- G2 G/2G/2|\
+d3/2 B/2 G F3/2 E/2 F| AGF E2 E/2E/2| EDC CB,-C| E3- D2 E/2G/2| c d3/2 c/2 B2 D/2E/2|\
+F B3/2 A/2 G2 G/2G/2| GDE F G3/2 F/2| E3- E2 E/2G/2| c d3/2 c/2 B2 D/2E/2|\
+F B3/2 A/2 G2 G/2G/2| G3/2 ^F/2 G BAB| c3- c2|| c3- c2||
+
+X:406
+T:Bourree Carre de la Chatre
+Z:Jack Campin, http://www.campin.me.uk/
+F:Jack Campin's Nine-Note Tunebook
+% last edit 03-02-2013
+A:Berry
+M:2/4
+L:1/16
+Q:1/4=122
+K:C
+G2|C3D E2F2|G4   G4  |A3B c2A2|G3F  E2D2|
+C3D E2F2|G4   G4  |A3B c2A2|G6      :|
+G2|E3C E2G2|FGFE D2E2|F3E F2A2|GAGF E2G2|
+E3C E2G2|FGFE D2E2|F3G A2B2|c6      :|
+
+X:1
+T:Bibb County Hoe Down
+S:From the playing of Seven Foot Dilly & His Dill Pickles
+R:Reel
+D:Brunswick575B (78 RPM), Seven Foot Dilly & His Dill Pickles (1930)
+D: https://www.slippery-hill.com/content/bibb-county-hoe-down
+D: https://www.youtube.com/watch?v=4shjVi3kZuc
+Z:Transcribed by Andrew Kuntz
+K:C
+e  c-d|e2ed e2ed|e2d2 cBAA|G2GEG2 GE|G2GG EGAc-|
+c2cAc2cA|c2A2 GABc|d2dB d2dB|d2 dB  dBcd|
+e2ed e2ed|e2d2 cBAA|G2GEG2 GE|G2G2 EGAB|
+c2c4-cd|BdBd AGAB|c2cB c2cB| c2A2GFED||
+E2EG E2 EG|E2 D2CDEF|G2GEG2 GE|G2GE AGEG|
+c2c2-c2cA|c2A2 GFEF|D2DC  DCDD|D2DC DB,CD|
+E2EG E2 EG|E2D2   CGEF|G2GE G2GE|G2GF EGGA|
+c2c2-c2cd|BdBG AGBG|(c/d/c) c2-c2  cA|c2A2GAcd||
+
+X:1
+T:Biddy Mulligan, the Pride of the Coombe
+M:3/4
+L:1/4
+K:C
+z2 e/2f/2| g e f| g2 a/2g/2| f d e| f2g/2-f/2| e c d| c B A| G3-|\
+G z G| c c d| e d c| B d d| d2 e/2f/2| g/2g/2 g g| f e d| c2 d| e2 e/2f/2|\
+g/2g/2 g g| f e d| c3-| c2 G/2G/2| c c c| e d c| A d e| f2e/2-f/2|\
+g e g| f d B| c3-| c2 G| c c c| e d c| A d e| f2 e/2f/2| g e g| f d B|\
+c3-| c e f| g g g| g a g| f d e| f2 g| e c c| c B c| d3-| d2 G/2G/2|\
+c c c| e d c| A d e| f2 e/2f/2| g e g| f d B| c3-| c2 z|
+
+X:1
+T:L\"andler CF
+T:Hanny Christen. Bd.II  St. Gallen II, Graub\"unden, Tessin. S.268 (LD02007) orig. C,F
+T: Graub\"unden. Repertoire von Peter Davoli, Davos/Samedan
+T:\"Uberliefert vermutlich durch Joggi Stocker (1889-1956)
+O:Switzerland
+%%MIDI program 21
+R:L\"andler
+M:3/4
+L:1/8
+K:C %%MIDI gchordon
+G3e dc |  Bf fG AG | G3f ed |  ce eG AG | G2e3c |  Bf fG AG | G3f ed |  c2z2z2

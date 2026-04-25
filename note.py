@@ -6,10 +6,6 @@ class Note:
         self.modifiedlength = "1"
         self.key = None
 
-    def __str__(self):
-        return self.note[:1]
-
-
     def __eq__(self, value):
         if isinstance(value,Note):
 
@@ -37,13 +33,12 @@ class Note:
                 if "/" in self.modifiedlength:
                     denominator = int(self.modifiedlength.split("/")[1])
                     if pienempi:
-                        self.modifiedlength = f"/{multiplier*denominator}"
-                        print(self.length)
+                        self.modifiedlength = f"{float(multiplier*denominator)}"
                     else:
                         if int(multiplier/denominator) == 1:
                             self.modifiedlength = 1
                         else:
-                            self.modifiedlength = f"/{int(multiplier/denominator)}"
+                            self.modifiedlength = f"{float(multiplier/denominator)}"
                 else:
                     if pienempi:
                         self.modifiedlength = f"{int(self.modifiedlength)/multiplier}"
@@ -52,6 +47,11 @@ class Note:
                         self.modifiedlength = f"{multiplier*int(self.modifiedlength)}"
             else:
                 print("HUPS",self.length,self.modifiedlength)
+        elif "/" in self.modifiedlength:
+
+            fraction = self.modifiedlength.split("/")
+            self.modifiedlength = 1/int(fraction[1])
+
         self.key = f"{self.note},{self.modifiedlength}"
             
 
@@ -59,23 +59,53 @@ class Note:
 
         
 
-class Notes:
-    def __init__(self,notes):
-        self.notes = notes
-        self.last = notes[-1]
-    
-    def __str__(self):
-        line = ""
-        for n in self.notes:
-            line += " " + str(n)
-        return line
-    
-    def __iter__(self):
-        for i in self.notes:
-            yield i
-    
+class Tahti():
+    def __init__(self):
+        self.length = 0
+        self.notes = []
+        self.last = []
+        self.writable = False
+
+    def lisää(self,note_unit):
+        note, length = note_unit.split(",")
+        self.length += float(length)
+        self.notes.append((note, float(length)))
+
+        if self.length >= 4:
+            self.writable = True
 
 
+    def kirjoita(self,line,kirjasto):
+        tahdin_pituus = 4
+        old_line = ""
+        viim_nuotti = ()
+        for k, v in self.notes:
+            tahdin_pituus -= v
+            # 1 - 2
+            if tahdin_pituus >= 0:
+                if v.is_integer():
+                    line += f"{kirjasto[int(k)]}{int(v)} "
+                    
+                else:
+                    ratio = v.as_integer_ratio()[1]
+                    line += f"{kirjasto[int(k)]}/{int(ratio)} "
 
-if __name__ == "__main__":
-    pass
+            else:
+
+                line +=f"{kirjasto[int(k)]}{int(v+tahdin_pituus)}-"
+                old_line = line
+                line = "| "
+                viim_nuotti = (k,float(abs(tahdin_pituus)))
+
+        self.length = abs(tahdin_pituus)
+        if self.length < 4:
+            self.writable = False
+
+        self.notes.clear()
+        if viim_nuotti:
+            self.notes.append(viim_nuotti)
+
+        if "0" in line or "0" in old_line:
+            breakpoint()
+        return line, old_line
+    
