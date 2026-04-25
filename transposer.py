@@ -14,7 +14,6 @@ erotus = {
     }
 
 def transpose(note,key):
-    return note
     if note == 2:
 
         return note
