@@ -10,6 +10,6 @@ Riippuvuudet voi asentaa komennolla
 Koodin saa käynistymään komennolla
     `python3 markov.py`
 
-Tuotoksen näkee kansiosta `kappaleet\demo.abc` ja voi kuunella midi muodossa `kappaleet\demo.mid`
+Tuotoksen näkee kansiosta `kappaleet\` ja voi kuunella midi muodossa
 
 nuotit voi lukea esimkerkiksi verkossa olevilta muuntajilta kuten https://notabc.app/abc-converter/ 

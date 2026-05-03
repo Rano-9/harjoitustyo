@@ -20,7 +20,7 @@ def transpose(note,key):
     for i in erotus.keys():
         if key.lower() in i:
             return (note + erotus[i])
-        
+
     print("ei ollut",key)
     return note
 

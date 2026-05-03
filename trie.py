@@ -4,60 +4,82 @@ class TrieNode():
     def __init__(self,key):
         self.freq = 0
         self.nodes = dict()
-        self.key = key
-        self.length = "1"
-        self.note = "0"
+        self.note = key
         self.end = False
+        self.iter = 0
 
+    def __contains__(self, item):
+        nodes = self.nodes
+        for i in item:
+            try:
+                nodes = nodes[i].nodes
+            except KeyError:
+                return False
+        return True
+    
     def __eq__(self, value):
-        return self.key == value
+        return self.note == value
 
     def __str__(self):
-        if isinstance((self.key),int):
-            return str(self.key)
+        if isinstance((self.note),int):
+            return str(self.note)
         string = ""
-        for i in self.key:
+        for i in self.note:
             string += " " + str(i)
         return string
 
 class Trie():
 
     def __init__(self):
-        self.root = TrieNode(None)
+        self.root = TrieNode("root")
         self.uniikkia = set()
 
+
+    def __contains__(self,item):
+        return item in self.root
+    
     def insert(self,keys):
         current = self.root
         for i in keys:
             try:
-                if current.nodes[i.key]:
-                    current = current.nodes[i.key]
+                if current.nodes[i.note]:
+                    current = current.nodes[i.note]
                     current.freq +=1
 
             except KeyError:
-                new_node = TrieNode(i.key)
-                new_node.note, new_node.length = i.key.split(",")
-                current.nodes[i.key] = new_node
+                new_node = TrieNode(i.note)
+                current.nodes[i.note] = new_node
                 current = new_node
                 current.freq += 1
-                self.uniikkia.add(i.key)
+                
+                self.uniikkia.add(i.note)
+                
         current.end = True
 
     def search(self,keys):
         current = self.root
         for i in keys:
-            
-            try:
-                current = current.nodes[i]
+            if hasattr(i,"__dict__"):
                 
-            except KeyError:
-                
-                return None, None, current.key
-            
+                try:
+                    current = current.nodes[i.note]
+                    
+                except KeyError:
+                    
+                    return [], [], current
+            else:
+
+                try:
+                    current = current.nodes[i]
+                    
+                except KeyError:
+                    
+                    return [], [], current
+
         freq = []
         nodes = []
 
         for i in current.nodes.values():
             nodes.append(i)
             freq.append(i.freq)
-        return nodes, freq, current.key
+        return nodes, freq, current

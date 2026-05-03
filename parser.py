@@ -26,7 +26,7 @@ class Parser():
         self.puu = Trie()
         self.depth = depth
         self.uuniikit = set()
-        
+
     def parser(self,files):
 
         ## The 12 Notes: C, C#, D, D#, E, F, F#, G, G#, A, A#, B.
@@ -44,13 +44,10 @@ class Parser():
                 rivit = tiedosto.read().splitlines()
 
             for rivi in rivit:
-                if type(nuotti) is Note:
-                        print("Toka")
-                        breakpoint()
                 next = False
                 if key is None:
                     if rivi.startswith("K:"):
-                        
+
                         key = rivi[2:]
                         key = key.split(" ")[0]
                         next = True
@@ -63,7 +60,7 @@ class Parser():
                     if rivi.startswith("L:"):
                         length = rivi[2:]
                         length = length.split(" ")[0]
-                        
+
                         if length == "":
                             length = rivi[2:]
                             length = length.split(" ")[1]
@@ -74,13 +71,10 @@ class Parser():
                     pass    
                 else:
                     if nuotti != 0:
-                        if type(nuotti) is Note:
-                            print("eka")
-                            breakpoint()
                         change = transpose(nuotti,key)
                         nuotit.append(Note(change))
                         nuotti = 0
-            
+
                     for i,v in enumerate(rivi):
                         if v == "|":
                             nuotti = 0
@@ -92,7 +86,7 @@ class Parser():
 
                         elif v == "M":
                             measure = rivi[i+2:i+5]
-                        
+
                         elif v == skip:
                             skip = ""
 
@@ -108,48 +102,58 @@ class Parser():
                                 else: 
                                     nuotti.note += 1
                                     perus += 1
+                            try:
+                                osoitin = rivi[i+1]
 
-                            osoitin = rivi[i+1]
+                                if osoitin in ",'":
+                                    if osoitin == ",":
+                                        nuotti.note -= 12
+                                        perus -= 12
+                                    else:
+                                        nuotti.note += 12
+                                        perus += 12
 
-                            if osoitin in ",'":
-                                if osoitin == ",":
-                                    nuotti.note -= 12
-                                    perus -= 12
+                                if perus >= 72 or osoitin in ",'":
+                                    osoitin = rivi[i+2]
+
+                                    if osoitin in "1234567890":
+                                        nuotti.modifiedlength = osoitin
+
+                                    elif osoitin == "/" and rivi[i+3] in "1234567890":
+                                        nuotti.modifiedlength = rivi[i+2:i+4]
                                 else:
-                                    nuotti.note += 12
-                                    perus += 12
-
-                            if perus >= 72 or osoitin in ",'":
-                                osoitin = rivi[i+2]
-
-                                if osoitin in "1234567890":
-                                    nuotti.modifiedlength = osoitin
-
-                                elif osoitin == "/" and rivi[i+3] in "1234567890":
-                                    nuotti.modifiedlength = rivi[i+2:i+4]
-                            else:
-                                if osoitin in "1234567890":
-                                    nuotti.modifiedlength = osoitin
+                                    if osoitin in "1234567890":
+                                        nuotti.modifiedlength = osoitin
 
 
-                                elif osoitin == "/" and rivi[i+2] in "1234567890":
-                                    nuotti.modifiedlength = rivi[i+1:i+3]
-
-                            nuotti.fix()
-                            self.uuniikit.add(nuotti.key)
+                                    elif osoitin == "/" and rivi[i+2] in "1234567890":
+                                        nuotti.modifiedlength = rivi[i+1:i+3]
+                            except IndexError:
+                                pass
+                            self.uuniikit.add(nuotti.note)
                             nuotit.append(nuotti)
                             nuotti = 0
 
-            syvyys = []
-            for i, v in enumerate(nuotit):
-                syvyys.append(nuotit[i:i+self.depth])
+            lisättävät_nuotit = []
+            jono = []
 
-            for x in syvyys:
-                if len(x) == self.depth:
-                    self.puu.insert(x)
-            kaikki.append(syvyys)
-        print(len(self.uuniikit),"unniikkia nuottia")
-        print(len(self.puu.uniikkia),"uniikkia nuottia puussa")
+            for i in range(len(nuotit) + self.depth-1):
+                
+                try:
+                    jono.append(nuotit[i])
+                except IndexError:
+                    lisättävät_nuotit.append(jono)
+                    jono = jono[1:]
+
+                if len(jono) == self.depth:
+                    lisättävät_nuotit.append(jono)
+                    jono = jono[1:]
+
+            for x in lisättävät_nuotit:
+                self.puu.insert(x)
+                
+            kaikki.append(lisättävät_nuotit)
+        print(len(self.uuniikit),"uniikkia nuottia")
         return self.puu, kaikki
 
 if __name__ == "__main__":
