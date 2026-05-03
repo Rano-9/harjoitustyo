@@ -4,6 +4,7 @@ from music21 import converter # pylint: disable= import-error
 import glob
 from parser import Parser
 from random import choices
+import time
 
 from note import Tahti
 
@@ -71,9 +72,9 @@ class Markov():
 
         self.file = f"""X: {index}
 T: Markovi ketjulla tehtyä musiikkia
-M: 4/4
+M: 2/4
 L: 1/8
-Q: 1/4=120
+Q: 1/4=130
 K: C
 V: 1
 """
@@ -95,7 +96,7 @@ V: 1
 
                     self.viim_haku = self.viim_haku[1:]
                     haettavat,painotus,nuotti = self.puu.search(self.viim_haku)
-                    
+
                     if haettavat and painotus:
                         self.viim_haku.append(choices(population=haettavat,weights=painotus)[0])
                         break
@@ -135,12 +136,14 @@ V: 1
             return self.file
 
     def kirjoita_ketju(self,index):
-        with open(f"data/demo{index}.abc","w") as demo:
+        with open(f"data/generoidut_kappaleet/generaatio_{index}.abc","w") as demo:
             for line in self.file:
                 demo.write(line)
             demo.close()
+        print(f"Kirjoitettu kappale {index}")
 
 if __name__ == "__main__":
+    
     kertaa = 1
     syvyys = 3
     pituus = 50
@@ -177,16 +180,29 @@ if __name__ == "__main__":
     else:
         SATUNNAIS = False
     
+    start_time = time.time()
     if syvyys > 0:
         ketju = Markov(syvyys)
     else:
         ketju = None
-
-
+    print("Käytetty aika harjoitusdatan käymiseen:",time.time()-start_time)
+    
     if ketju:
+        start_time = time.time()
+        ajat = []
         for i in range(kertaa):
-
+            ketju_time = time.time()
             ketju.tuota_ketju(i,pituus,SATUNNAIS)
+            ajat.append(time.time()-ketju_time)
 
-            score = converter.parse(f"data/demo{i}.abc",format="ABC")
-            score.write("midi", fp=f"data/demo{i}.midi")
+        print("Keskimäärin käytetty aikaa yhden kappaleen generoimiseen:",sum(ajat)/len(ajat))
+        print("Käytetty aika kappaleiden generoimiseen:",(time.time()-start_time))
+        
+        start_time = time.time()
+        
+        for i in range(kertaa):
+            
+            score = converter.parse(f"data/generoidut_kappaleet/generaatio_{i}.abc",format="ABC")
+            score.write("midi", fp=f"data/generoidut_midit/generaatio_{i}.midi")
+        
+        print("Käytetty aika midien luomiseen:",(time.time()-start_time))
