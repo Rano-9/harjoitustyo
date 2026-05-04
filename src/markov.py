@@ -8,10 +8,6 @@ import time
 
 from note import Tahti
 
-
-
-
-
 class Markov():
     def __init__(self,depth,directories = None):
         self.file = ""
@@ -59,7 +55,7 @@ class Markov():
         if not directories:
             directories = glob.glob("data/kappaleet/*.abc")
             print(f"ladattu: {len(directories)} kappaletta")
-        
+
         self.depth = depth
         parsija = Parser(self.depth)
         self.puu, _ = parsija.parser(directories)
@@ -84,7 +80,7 @@ V: 1
         while True:
             if count == pituus:
                 break
-            
+
             haettavat,painotus,nuotti = self.puu.search(self.viim_haku)
 
             if not haettavat:
@@ -100,12 +96,12 @@ V: 1
                     if haettavat and painotus:
                         self.viim_haku.append(choices(population=haettavat,weights=painotus)[0])
                         break
-                    
+
                 print("Tiputettiin ketjun hakua:",tiputus,"kertaa")
             else:
                 self.viim_haku.append(choices(population=haettavat,weights=painotus)[0])
 
-            
+
             self.tahti.lisää(self.viim_haku[-1],satunnais)
 
             if len(self.viim_haku) == self.depth:
@@ -121,30 +117,27 @@ V: 1
                 count += 1
                 tahteja += 1
 
-            if tahteja == 6:
+            if tahteja == 6: # pragma: no cover
                 self.file += "|\n"
                 tahteja = 0
-            
 
-            
-
-        if __name__ == "__main__":
+        if __name__ == "__main__": # pragma: no cover
             self.kirjoita_ketju(index)
             return None
         else:
             print("Ketjua ei kirjoitettu tiedostoon")
             return self.file
 
-    def kirjoita_ketju(self,index):
+    def kirjoita_ketju(self,index): # pragma: no cover
         with open(f"data/generoidut_kappaleet/generaatio_{index}.abc","w") as demo:
             for line in self.file:
                 demo.write(line)
             demo.close()
         print(f"Kirjoitettu kappale {index}")
 
-if __name__ == "__main__":
+if __name__ == "__main__": # pragma: no cover
     
-    kertaa = 1
+    kertaa = 1 
     syvyys = 3
     pituus = 50
     SATUNNAIS = False

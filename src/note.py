@@ -35,7 +35,7 @@ class Tahti():
             if tahdin_pituus >= 0:
                 if v.is_integer():
                     line += f"{kirjasto[int(k)]}{int(v)} "
-                    
+
                 else:
                     ratio = v.as_integer_ratio()[1]
                     line += f"{kirjasto[int(k)]}/{int(ratio)} "
@@ -55,7 +55,4 @@ class Tahti():
         if viim_nuotti:
             self.notes.append(viim_nuotti)
 
-        if "0" in line or "0" in old_line:
-            breakpoint()
         return line, old_line
-    

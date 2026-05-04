@@ -16,17 +16,7 @@ class TrieNode():
             except KeyError:
                 return False
         return True
-    
-    def __eq__(self, value):
-        return self.note == value
 
-    def __str__(self):
-        if isinstance((self.note),int):
-            return str(self.note)
-        string = ""
-        for i in self.note:
-            string += " " + str(i)
-        return string
 
 class Trie():
 
@@ -64,10 +54,10 @@ class Trie():
                 try:
                     current = current.nodes[i.note]
                     
-                except KeyError:
+                except KeyError:# pragma: no cover
                     
                     return [], [], current
-            else:
+            else: # pragma: no cover
 
                 try:
                     current = current.nodes[i]

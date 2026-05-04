@@ -20,13 +20,3 @@ def transpose(note,key):
     for i in erotus.keys():
         if key.lower() in i:
             return (note + erotus[i])
-
-    print("ei ollut",key)
-    return note
-
-def check_key(key):
-
-    if key in erotus.keys():
-        return True
-    print("Key failed",key)
-    return False

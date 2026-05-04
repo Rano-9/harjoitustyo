@@ -36,7 +36,6 @@ class Parser():
             measure = None
             length = None
             skip = ""
-            change = 0
             nuotit = []
             nuotti = 0
             next = False
@@ -68,17 +67,12 @@ class Parser():
                         next = True
 
                 if length is None or measure is None or key is None or next:
-                    pass    
+                    pass
                 else:
-                    if nuotti != 0:
-                        change = transpose(nuotti,key)
-                        nuotit.append(Note(change))
-                        nuotti = 0
 
                     for i,v in enumerate(rivi):
                         if v == "|":
                             nuotti = 0
-                            change = 0
                         #Vaihdetaan avainta kun esiintyy uusi avain nuoteissa
                         if v == "K":
                             key = rivi[i+2]
@@ -138,7 +132,7 @@ class Parser():
             jono = []
 
             for i in range(len(nuotit) + self.depth-1):
-                
+
                 try:
                     jono.append(nuotit[i])
                 except IndexError:
@@ -151,8 +145,7 @@ class Parser():
 
             for x in lisättävät_nuotit:
                 self.puu.insert(x)
-                
-            kaikki.append(lisättävät_nuotit)
+
         print(len(self.uuniikit),"uniikkia nuottia")
         return self.puu, kaikki
 
