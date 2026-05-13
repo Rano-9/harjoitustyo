@@ -133,7 +133,7 @@ V: 1
             for line in self.file:
                 demo.write(line)
             demo.close()
-        print(f"Kirjoitettu kappale {index}")
+        
 
 if __name__ == "__main__": # pragma: no cover
     
@@ -148,7 +148,7 @@ if __name__ == "__main__": # pragma: no cover
 
     except ValueError:
         pass
-    print("Minkä kertaisen markovin ketju tehdään (default 3)")
+    print("Minkä asteisen markovin ketju tehdään (default 3)")
 
     try:
         syvyys = int(input())
@@ -187,6 +187,7 @@ if __name__ == "__main__": # pragma: no cover
             ketju_time = time.time()
             ketju.tuota_ketju(i,pituus,SATUNNAIS)
             ajat.append(time.time()-ketju_time)
+            print(f"Kirjoitettu kappale {i}/{kertaa}")
 
         print("Keskimäärin käytetty aikaa yhden kappaleen generoimiseen:",sum(ajat)/len(ajat))
         print("Käytetty aika kappaleiden generoimiseen:",(time.time()-start_time))
